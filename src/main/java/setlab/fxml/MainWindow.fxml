@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="440.0" prefWidth="670.0"
+            styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8"
+            fx:controller="setlab.controller.MainWindowController">
+    <stylesheets>
+        <URL value="@../css/mainwindow.css"/>
+    </stylesheets>
+    <children>
+        <MenuBar prefHeight="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Закрыть"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#manual" text="Справка"/>
+                        <MenuItem mnemonicParsing="false" onAction="#feedback" text="Обратная связь"/>
+                        <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="О программе"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TabPane prefHeight="396.0" prefWidth="663.0" rotateGraphic="true" side="BOTTOM" tabClosingPolicy="UNAVAILABLE"
+                 AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                 AnchorPane.topAnchor="35.0">
+            <tabs>
+                <Tab fx:id="tab_set" text="Множества">
+                    <content>
+                        <AnchorPane fx:id="set_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                    prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="set_field" focusTraversable="false" prefHeight="32.0"
+                                           prefWidth="255.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                                           AnchorPane.rightAnchor="410.0"/>
+                                <HBox alignment="CENTER" layoutX="260.0" layoutY="339.0" prefHeight="32.0"
+                                      prefWidth="200.0" spacing="2.0" AnchorPane.bottomAnchor="5.0"
+                                      AnchorPane.rightAnchor="210.0">
+                                    <children>
+                                        <Button fx:id="set_op_union" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="32.0" prefWidth="32.0" text="∪">
+                                            <HBox.margin>
+                                                <Insets left="3.0"/>
+                                            </HBox.margin>
+                                            <font>
+                                                <Font size="12.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="set_op_inter" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="32.0" prefWidth="32.0" text="∩"/>
+                                        <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="32.0" prefWidth="32.0" text="\\">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="32.0" prefWidth="32.0" text="∆"/>
+                                        <Button fx:id="set_btnEnter" focusTraversable="false" layoutX="398.0"
+                                                layoutY="343.0" mnemonicParsing="false" prefHeight="32.0"
+                                                prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0"/>
+                                    </children>
+                                </HBox>
+                                <AnchorPane layoutX="640.0" layoutY="42.0" prefHeight="376.0" prefWidth="206.0"
+                                            AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="220.0"
+                                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                              AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <Button fx:id="set_btn_remove" alignment="CENTER"
+                                                        focusTraversable="false" mnemonicParsing="false"
+                                                        prefHeight="30.0" prefWidth="205.0" text="Удалить множество">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <HBox.margin>
+                                                        <Insets right="2.0"/>
+                                                    </HBox.margin>
+                                                </Button>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="5.0"/>
+                                            </padding>
+                                        </HBox>
+                                        <ListView fx:id="set_listView" focusTraversable="false" layoutY="44.0"
+                                                  prefHeight="332.0" prefWidth="205.0"
+                                                  style="-fx-border-color: rgba(0, 0, 255, 0);"
+                                                  AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0"
+                                                  AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+                                            <padding>
+                                                <Insets left="10.0" right="10.0"/>
+                                            </padding>
+                                        </ListView>
+                                    </children>
+                                </AnchorPane>
+                                <TextArea fx:id="set_area" editable="false" focusTraversable="false" layoutX="5.0"
+                                          layoutY="14.0" prefHeight="200.0" prefWidth="200.0"
+                                          AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0"
+                                          AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0">
+                                    <padding>
+                                        <Insets right="40.0"/>
+                                    </padding>
+                                </TextArea>
+                                <VBox alignment="CENTER" layoutX="428.0" layoutY="14.0" prefWidth="40.0" spacing="4.0"
+                                      AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="14.0">
+                                    <children>
+                                        <ImageView id="buttonImg" fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0"
+                                                   layoutX="428.0" layoutY="14.0" pickOnBounds="true"
+                                                   preserveRatio="true" AnchorPane.rightAnchor="218.0"
+                                                   AnchorPane.topAnchor="14.0">
+                                            <image>
+                                                <Image url="@UI_images/trash.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Separator>
+                                            <padding>
+                                                <Insets top="4.0"/>
+                                            </padding>
+                                        </Separator>
+                                        <ImageView id="buttonImg" fx:id="set_backToText" fitHeight="24.0"
+                                                   fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true"
+                                                   preserveRatio="true" AnchorPane.rightAnchor="218.0"
+                                                   AnchorPane.topAnchor="46.0">
+                                            <image>
+                                                <Image url="@UI_images/back.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Separator>
+                                            <padding>
+                                                <Insets top="4.0"/>
+                                            </padding>
+                                        </Separator>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_binRel" text="Бинарные отношения">
+                    <content>
+                        <AnchorPane fx:id="binRel_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                    prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="binrel_area" editable="false" focusTraversable="false"
+                                          prefHeight="329.0" prefWidth="415.0" AnchorPane.bottomAnchor="42.0"
+                                          AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="250.0"
+                                          AnchorPane.topAnchor="5.0"/>
+                                <TextField fx:id="binrel_field" focusTraversable="false" layoutX="5.0" layoutY="329.0"
+                                           prefHeight="32.0" prefWidth="345.0" promptText="Задайте Бинарное Отношение "
+                                           AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                                           AnchorPane.rightAnchor="320.0"/>
+                                <Button fx:id="binrel_analysis" focusTraversable="false" layoutX="356.0" layoutY="329.0"
+                                        mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0"
+                                        prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0"
+                                        AnchorPane.rightAnchor="250.0">
+                                    <font>
+                                        <Font size="12.0"/>
+                                    </font>
+                                </Button>
+                                <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" maxHeight="200.0"
+                                      maxWidth="250.0" prefHeight="195.0" prefWidth="240.0"
+                                      style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="175.0"
+                                      AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewReflex" fitHeight="24.0" fitWidth="24.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Рефлексивность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAntiReflex" fitHeight="24.0" fitWidth="24.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Антирефлексивность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewBidirect" fitHeight="24.0" fitWidth="24.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Симметричность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAntiBidirect" fitHeight="24.0"
+                                                           fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Антисимметричность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAsBidirect" fitHeight="24.0" fitWidth="24.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Асимметричность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewTransitive" fitHeight="24.0" fitWidth="24.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@UI_images/dismiss.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Транзитивность"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    </padding>
+                                </VBox>
+                                <HBox layoutX="443.0" layoutY="206.0" prefHeight="160.0" prefWidth="240.0"
+                                      style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0"
+                                      AnchorPane.rightAnchor="5.0">
+                                    <children>
+                                        <StackPane fx:id="binrel_paneCanvas" layoutX="455.0" layoutY="223.0"
+                                                   prefHeight="150.0" prefWidth="215.0" AnchorPane.bottomAnchor="10.0"
+                                                   AnchorPane.rightAnchor="10.0">
+                                            <children>
+                                                <Canvas fx:id="binrel_canvas" height="160.0" width="215.0">
+                                                    <StackPane.margin>
+                                                        <Insets/>
+                                                    </StackPane.margin>
+                                                </Canvas>
+                                            </children>
+                                        </StackPane>
+                                        <Slider fx:id="binRel_sliderForCanvas" majorTickUnit="60.0" max="180.0"
+                                                min="-180.0" orientation="VERTICAL" prefHeight="161.0"
+                                                prefWidth="41.0"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_comb" onSelectionChanged="#commandStart" text="Комбинаторика">
+                    <content>
+                        <AnchorPane fx:id="comb_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                    prefWidth="200.0">
+                            <children>
+                                <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="161.0" prefWidth="659.0"
+                                            AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="5.0"
+                                            AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <WebView fx:id="comb_webView" focusTraversable="false" prefHeight="151.0"
+                                                 prefWidth="611.0" AnchorPane.bottomAnchor="5.0"
+                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.0"
+                                                 AnchorPane.topAnchor="5.0"/>
+                                        <Separator orientation="VERTICAL" prefHeight="200.0"
+                                                   AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="40.0"
+                                                   AnchorPane.topAnchor="-5.0"/>
+                                        <VBox alignment="TOP_CENTER" prefWidth="40.0" spacing="4.0"
+                                              AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                              AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <ImageView id="buttonImg" fx:id="comb_viewTrash" fitHeight="24.0"
+                                                           fitWidth="24.0" layoutX="428.0" layoutY="14.0"
+                                                           pickOnBounds="true" preserveRatio="true"
+                                                           AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
+                                                    <image>
+                                                        <Image url="@UI_images/trash.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Separator>
+                                                    <padding>
+                                                        <Insets top="4.0"/>
+                                                    </padding>
+                                                </Separator>
+                                                <ImageView id="buttonImg" fx:id="comb_backToText" fitHeight="24.0"
+                                                           fitWidth="24.0" layoutX="428.0" layoutY="46.0"
+                                                           pickOnBounds="true" preserveRatio="true"
+                                                           AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
+                                                    <image>
+                                                        <Image url="@UI_images/back.png"/>
+                                                    </image>
+                                                </ImageView>
+                                                <Separator>
+                                                    <padding>
+                                                        <Insets top="4.0"/>
+                                                    </padding>
+                                                </Separator>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="comb_leftSide" layoutX="6.0" layoutY="177.0" prefHeight="190.0"
+                                            prefWidth="342.0" style="-fx-border-color: #DDDDDD;"
+                                            AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
+                                    <children>
+                                        <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" layoutX="4.0"
+                                                 layoutY="4.0" prefHeight="130.0" prefWidth="336.0"
+                                                 AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="3.0"
+                                                 AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0"/>
+                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="34.0"
+                                              prefWidth="254.0" spacing="2.0" AnchorPane.bottomAnchor="4.0"
+                                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="32.0">
+                                            <children>
+                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false"
+                                                        mnemonicParsing="false" onMouseClicked="#commandYeah"
+                                                        prefHeight="31.0" prefWidth="100.0" text="Да"/>
+                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false"
+                                                        mnemonicParsing="false" onMouseClicked="#commandBack"
+                                                        prefHeight="31.0" prefWidth="61.0" text="Назад"/>
+                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false"
+                                                        maxHeight="31.0" maxWidth="100.0" mnemonicParsing="false"
+                                                        onMouseClicked="#commandNope" prefHeight="32.0"
+                                                        prefWidth="100.0" text="Нет"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </VBox.margin>
+                                        </HBox>
+                                        <ImageView id="buttonImg" fx:id="comb_imageViewReset" fitHeight="24.0"
+                                                   fitWidth="24.0" layoutX="309.0" layoutY="155.0" pickOnBounds="true"
+                                                   preserveRatio="true" AnchorPane.bottomAnchor="10.0"
+                                                   AnchorPane.rightAnchor="10.0">
+                                            <image>
+                                                <Image url="@UI_images/refresh.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Separator layoutX="4.0" layoutY="150.0" prefWidth="200.0"
+                                                   AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="8.0"
+                                                   AnchorPane.rightAnchor="8.0"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="comb_rightSide" layoutX="382.0" layoutY="184.0" prefHeight="190.0"
+                                            prefWidth="307.0" style="-fx-border-color: #DDDDDD;"
+                                            AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                    <children>
+                                        <BorderPane layoutX="2.0" layoutY="2.0" prefHeight="140.0" prefWidth="285.0"
+                                                    AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0"
+                                                    AnchorPane.topAnchor="1.0">
+                                            <center>
+                                                <ImageView fx:id="comb_imageView" fitHeight="70.0" fitWidth="113.0"
+                                                           pickOnBounds="true" preserveRatio="true" smooth="false"
+                                                           BorderPane.alignment="CENTER"/>
+                                            </center>
+                                        </BorderPane>
+                                        <AnchorPane fx:id="comb_fieldBar" layoutX="20.0" layoutY="153.0"
+                                                    AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                                                    AnchorPane.rightAnchor="5.0">
+                                            <children>
+                                                <TextField fx:id="comb_fieldM" alignment="CENTER"
+                                                           focusTraversable="false" layoutX="104.0" prefHeight="31.0"
+                                                           prefWidth="110.0" AnchorPane.bottomAnchor="0.0"
+                                                           AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0"/>
+                                                <TextField fx:id="comb_fieldN" alignment="CENTER"
+                                                           focusTraversable="false" prefHeight="31.0" prefWidth="115.0"
+                                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                                           AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0"/>
+                                                <Button fx:id="comb_btnEnter" focusTraversable="false" layoutX="208.0"
+                                                        mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0"
+                                                        text="Ввод" AnchorPane.bottomAnchor="0.0"
+                                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_logic" disable="true" text="Логические выражения (в разраб.)">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TreeTableView prefHeight="215.0" prefWidth="660.0" AnchorPane.bottomAnchor="145.0"
+                                               AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                               AnchorPane.topAnchor="5.0">
+                                    <columns>
+                                        <TreeTableColumn prefWidth="75.0" text="C1"/>
+                                        <TreeTableColumn prefWidth="75.0" text="C2"/>
+                                    </columns>
+                                </TreeTableView>
+                                <GridPane id="panel" fx:id="panelButton" hgap="4.0" vgap="4.0"
+                                          AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Button fx:id="bool_btn_invert" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="¬">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_and" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="∧" GridPane.columnIndex="1">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_eq" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="~" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_or" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="∨" GridPane.columnIndex="1"
+                                                GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </padding>
+                                        </Button>
+                                        <Button fx:id="bool_btn_invEq" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="⊕" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_sh" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="↑" GridPane.columnIndex="1"
+                                                GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_enter" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="Ввод" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="bool_btn_arr" focusTraversable="false" mnemonicParsing="false"
+                                                prefHeight="42.0" prefWidth="100.0" text="↓" GridPane.columnIndex="1"
+                                                GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets bottom="2.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </padding>
+                                </GridPane>
+                                <AnchorPane layoutX="9.0" layoutY="251.0" prefHeight="136.0" prefWidth="450.0"
+                                            AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                                            AnchorPane.rightAnchor="215.0">
+                                    <children>
+                                        <TextField fx:id="bool_field" layoutY="74.0" prefHeight="32.0"
+                                                   promptText="Введите формулу" AnchorPane.bottomAnchor="0.0"
+                                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                            <VBox.margin>
+                                                <Insets bottom="4.0" left="4.0" right="4.0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                        <Button fx:id="bool_addAtom" layoutX="204.0" mnemonicParsing="false"
+                                                prefHeight="32.0" prefWidth="32.0" text="+"
+                                                AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"/>
+                                        <ListView fx:id="bool_listAtoms" focusTraversable="false" layoutX="44.0"
+                                                  layoutY="68.0" orientation="HORIZONTAL" prefHeight="32.0"
+                                                  prefWidth="400.0" AnchorPane.bottomAnchor="35.0"
+                                                  AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0">
+                                            <VBox.margin>
+                                                <Insets left="4.0" right="8.0" top="2.0"/>
+                                            </VBox.margin>
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                        </ListView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
